@@ -6,8 +6,6 @@ import 'package:ecoearn/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
-
 import '../../services/waste_service.dart';
 import '../../screens/general/general_screen.dart';
 import '../../screens/profile/profile_screen.dart';
