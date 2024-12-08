@@ -310,7 +310,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
                       ),
                     ),
               widget.materialType.toLowerCase() != 'glass'
-                  ? SizedBox.shrink()
+                  ? const SizedBox.shrink()
                   : TextField(
                       controller: _quantityController,
                       decoration: const InputDecoration(
