@@ -27,16 +27,8 @@ class _GeneralScreenState extends State<GeneralScreen> {
   bool _isLoading = false;
 
   final List<String> _metalTypes = [
-    'Aluminum',
     'Steel',
-    'Copper',
-    'Brass',
     'Iron',
-    'Tin',
-    'Lead',
-    'Zinc',
-    'Alloy',
-    'Other'
   ];
 
   Future<void> _uploadImage() async {

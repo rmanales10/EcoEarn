@@ -5,214 +5,45 @@ class LearnScreen2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Header
-            Container(
-              padding: const EdgeInsets.all(24),
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFF34A853),
-                    Color(0xFF144221),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey, // Semi-transparent shadow
-                    spreadRadius: 4, // Controls the size of the shadow area
-                    blurRadius: 6, // Softens the edges of the shadow
-                    offset: Offset(
-                        0, 3), // Adjusts the position of the shadow (x, y)
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // Back button positioned on the left
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: GestureDetector(
-                          onTap: () => Navigator.pop(context),
-                          child: Container(
-                            height: 100,
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      ),
-                      // Centered Learn text
-                      const Text(
-                        'Learn',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Text(
-                    'Ways to reduce waste',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Learn how you can make small changes that are eco-friendly and will have a lasting impact.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      height: 1.4,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // Content
+            _buildHeader(context, screenWidth),
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(24),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.05, vertical: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Get your own reusable bottle',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      _buildSectionTitle('Get your own reusable bottle', screenWidth),
+                      SizedBox(height: screenHeight * 0.03),
+                      _buildImageRow(screenWidth, screenHeight),
+                      SizedBox(height: screenHeight * 0.02),
+                      _buildSymbolRow(screenWidth, screenHeight),
+                      SizedBox(height: screenHeight * 0.03),
+                      _buildCaption(
+                        description:
+                            '• You can put that reusable bottle to use, save money, and reduce waste',
+                        screenWidth: screenWidth,
                       ),
-                      const SizedBox(height: 24),
-
-                      // Images row with symbols and captions
-                      SizedBox(
-                        width: double.infinity,
-                        child: Column(
-                          children: [
-                            // Images row
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: 120,
-                                  child: Image.asset(
-                                    'assets/images/image 37.png',
-                                    height: 200,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                                const SizedBox(width: 40),
-                                SizedBox(
-                                  width: 120,
-                                  child: Image.asset(
-                                    'assets/images/image 38.png',
-                                    height: 200,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            // Symbols row
-                            const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: 120,
-                                  child: Center(
-                                    child: Icon(
-                                      Icons.close,
-                                      color: Colors.red,
-                                      size: 30,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 40),
-                                SizedBox(
-                                  width: 120,
-                                  child: Center(
-                                    child: Icon(
-                                      Icons.check,
-                                      color: Color(0xFF2E7D32),
-                                      size: 30,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 24),
-                            // Captions
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 24),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // First caption
-
-                                  Text(
-                                    '• You can put that reusable bottle to use, save money, and reduce waste',
-                                    style: TextStyle(
-                                      color: Color(0xFF2E7D32),
-                                      fontWeight: FontWeight.bold,
-                                      height: 2,
-                                    ),
-                                  ),
-                                  SizedBox(height: 8),
-                                  // Second caption
-
-                                  Text(
-                                    '• Reduce your chanced of purchasing more expensive beverages on-the-go.',
-                                    style: TextStyle(
-                                      color: Color(0xFF2E7D32),
-                                      fontWeight: FontWeight.bold,
-                                      height: 2,
-                                    ),
-                                  ),
-                                  SizedBox(height: 8),
-                                  // Second caption
-
-                                  Text(
-                                    '• This will eliminate the one-time use containers they come in.',
-                                    style: TextStyle(
-                                      color: Color(0xFF2E7D32),
-                                      fontWeight: FontWeight.bold,
-                                      height: 2,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                      SizedBox(height: screenHeight * 0.02),
+                      _buildCaption(
+                        description:
+                            '• Reduce your chances of purchasing more expensive beverages on-the-go.',
+                        screenWidth: screenWidth,
+                      ),
+                      SizedBox(height: screenHeight * 0.02),
+                      _buildCaption(
+                        description:
+                            '• This will eliminate the one-time use containers they come in.',
+                        screenWidth: screenWidth,
                       ),
                     ],
                   ),
@@ -222,7 +53,179 @@ class LearnScreen2 extends StatelessWidget {
           ],
         ),
       ),
-     
+    );
+  }
+
+  Widget _buildHeader(BuildContext context, double screenWidth) {
+    return Container(
+      padding: EdgeInsets.all(screenWidth * 0.06),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFF34A853),
+            Color(0xFF144221),
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            spreadRadius: 4,
+            blurRadius: 6,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ),
+              Text(
+                'Learn',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: screenWidth * 0.06,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: screenWidth * 0.04),
+           Text(
+            'Ways to reduce waste',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: screenWidth * 0.04,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 8),
+           Text(
+            'Learn how you can make small changes that are eco-friendly and will have a lasting impact.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: screenWidth * 0.035,
+              height: 1.4,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title, double screenWidth) {
+    return Text(
+      title,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: screenWidth * 0.05,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget _buildImageRow(double screenWidth, double screenHeight) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: screenWidth * 0.25,
+          child: Image.asset(
+            'assets/images/image 37.png',
+            height: screenHeight * 0.2,
+            fit: BoxFit.contain,
+          ),
+        ),
+        SizedBox(width: screenWidth * 0.1),
+        SizedBox(
+          width: screenWidth * 0.25,
+          child: Image.asset(
+            'assets/images/image 38.png',
+            height: screenHeight * 0.2,
+            fit: BoxFit.contain,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSymbolRow(double screenWidth, double screenHeight) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: screenWidth * 0.2,
+          child: Center(
+            child: Icon(
+              Icons.close,
+              color: Colors.red,
+              size: screenHeight * 0.05,
+            ),
+          ),
+        ),
+        SizedBox(width: screenWidth * 0.1),
+        SizedBox(
+          width: screenWidth * 0.2,
+          child: Center(
+            child: Icon(
+              Icons.check,
+              color: const Color(0xFF2E7D32),
+              size: screenHeight * 0.05,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCaption({
+    required String description,
+    required double screenWidth,
+  }) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            description,
+            style: TextStyle(
+              color: const Color(0xFF2E7D32),
+              fontWeight: FontWeight.bold,
+              fontSize: screenWidth * 0.033, 
+              height: 1.5,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

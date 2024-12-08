@@ -106,7 +106,7 @@ class SignInManager {
     );
   }
 
-  List<Widget> buildFormFields(BuildContext context) {
+  List<Widget> buildFormFields(BuildContext context, VoidCallback ontap, bool _isPasswordVisible) {
     return [
       TextFormField(
         controller: emailController,
@@ -129,14 +129,21 @@ class SignInManager {
         validator: (value) => value == null || value.isEmpty
             ? 'Please enter your password'
             : null,
-        obscureText: true,
-        decoration: const InputDecoration(
-          hintStyle: TextStyle(color: Colors.black54),
+        obscureText: _isPasswordVisible,
+        decoration: InputDecoration(
+          suffixIcon: IconButton(
+            icon: Icon(
+              _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+              color: Colors.black54,
+            ),
+            onPressed: ontap,
+          ),
+          hintStyle: const TextStyle(color: Colors.black54),
           hintText: '••••••••',
           labelText: 'Password',
           filled: true,
-          fillColor: Color.fromARGB(255, 243, 243, 243),
-          border: OutlineInputBorder(
+          fillColor: const Color.fromARGB(255, 243, 243, 243),
+          border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(Radius.circular(8)),
           ),

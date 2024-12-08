@@ -12,6 +12,7 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   final _signInManager = SignInManager();
+  bool _isPasswordVisible = true;
 
   @override
   void dispose() {
@@ -44,7 +45,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                   const SizedBox(height: 35),
-                  ..._signInManager.buildFormFields(context),
+                  ..._signInManager.buildFormFields(
+                    context,
+                    () {
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                    _isPasswordVisible,
+                  ),
                   const SizedBox(height: 38),
                   Container(
                     decoration: BoxDecoration(

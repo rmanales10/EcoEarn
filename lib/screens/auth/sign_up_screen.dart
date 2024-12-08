@@ -1,7 +1,8 @@
-import 'package:ecoearn/services/auth_service.dart';
-import 'package:ecoearn/widgets/eco_earn_logo.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/eco_earn_logo.dart';
+import '../../services/auth_service.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -18,8 +19,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _confirmPasswordController = TextEditingController();
   final _authService = AuthService();
   bool _acceptedTerms = false;
-  bool _isPasswordVisible = false;
-  bool _isPasswordVisible1 = false;
 
   void _showTermsAndPolicy(BuildContext context) {
     showDialog(
@@ -28,45 +27,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
         return AlertDialog(
           title: const Text('Terms & Policy'),
           content: const SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'EcoEarn Terms & Policy',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Welcome to EcoEarn! By accessing or using our services, you agree to comply with the following terms and policies. EcoEarn is dedicated to promoting sustainable practices and environmental awareness through innovative technology and community engagement.',
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    '1. Use of Services',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    '• EcoEarn connects users with smart bins to encourage recycling and sustainability.\n'
-                    '• Users earn rewards for recycling activities tracked through the EcoEarn app.\n'
-                    '• You agree to use EcoEarn responsibly and in compliance with all local laws and regulations.',
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    '2. User Responsibilities',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                      '• Accurate Information: You agree to provide accurate and up-to-date information during registration.\n'
-                      '• Appropriate Use: Do not misuse EcoEarn services for unauthorized or illegal purposes.\n'
-                      '• Recycling Practices: Ensure that the materials you deposit in smart bins are suitable for recycling.'),
-                  SizedBox(height: 10),
-                  Text(
-                    'Thank you for being part of the EcoEarn community!',
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
-                ],
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'EcoEarn Terms & Policy',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Welcome to EcoEarn! By accessing or using our services, you agree to comply with the following terms and policies. EcoEarn is dedicated to promoting sustainable practices and environmental awareness through innovative technology and community engagement.',
+                ),
+                SizedBox(height: 10),
+                Text(
+                  '1. Use of Services',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '- EcoEarn connects users with smart bins to encourage recycling and sustainability.\n'
+                  '- Users earn rewards for recycling activities tracked through the EcoEarn app.\n'
+                  '- You agree to use EcoEarn responsibly and in compliance with all local laws and regulations.',
+                ),
+                SizedBox(height: 10),
+                Text(
+                  '2. User Responsibilities',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '- Accurate Information: You agree to provide accurate and up-to-date information during registration.\n'
+                  '- Appropriate Use: Do not misuse EcoEarn services for unauthorized or illegal purposes.\n'
+                  '- Recycling Practices: Ensure that the materials you deposit in smart bins are suitable for recycling.',
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Thank you for being part of the EcoEarn community!',
+                  style: TextStyle(fontStyle: FontStyle.italic),
+                ),
+              ],
             ),
           ),
           actions: [
@@ -160,27 +157,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       }
                       return null;
                     },
-                    obscureText: !_isPasswordVisible,
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _isPasswordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: Colors.black54,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isPasswordVisible = !_isPasswordVisible;
-                          });
-                        },
-                      ),
-                      hintStyle: const TextStyle(color: Colors.black54),
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      hintStyle: TextStyle(color: Colors.black54),
                       hintText: '••••••••',
                       labelText: 'Password',
                       filled: true,
-                      fillColor: const Color.fromARGB(255, 243, 243, 243),
-                      border: const OutlineInputBorder(
+                      fillColor:  Color.fromARGB(255, 243, 243, 243),
+                      border:  OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -195,27 +179,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       }
                       return null;
                     },
-                    obscureText: !_isPasswordVisible1,
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _isPasswordVisible1
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: Colors.black54,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isPasswordVisible1 = !_isPasswordVisible1;
-                          });
-                        },
-                      ),
+                    obscureText: true,
+                    decoration: const InputDecoration(
                       hintText: '••••••••',
-                      hintStyle: const TextStyle(color: Colors.black54),
+                      hintStyle: TextStyle(color: Colors.black54),
                       labelText: 'Confirm password',
                       filled: true,
-                      fillColor: const Color.fromARGB(255, 243, 243, 243),
-                      border: const OutlineInputBorder(
+                      fillColor: Color.fromARGB(255, 243, 243, 243),
+                      border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -233,6 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           });
                         },
                         activeColor: const Color(0xFF2E7D32),
+                        
                       ),
                       RichText(
                         text: TextSpan(
@@ -240,12 +212,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           style: const TextStyle(color: Colors.grey),
                           children: [
                             TextSpan(
-                              text: 'Terms & Policy',
-                              style: const TextStyle(
-                                color: Color(0xFF2E7D32),
-                                decoration: TextDecoration.underline,
-                                decorationColor: Color(0xFF2E7D32),
-                              ),
+                              text: 'terms & policy',
+                              style: const TextStyle(color: Color(0xFF2E7D32)),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   _showTermsAndPolicy(context); // Show dialog
